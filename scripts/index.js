@@ -16,7 +16,7 @@ const saldoAct = document.getElementById("saldo")
 
 
 function actualizarSaldo(){
-    saldoAct.innerText = `El saldo es: ${saldo} €.`
+    saldoAct.innerText = `El saldo es: ${saldo.toFixed(2)} €.`
 }
 
 function iniciarSesion(){
@@ -39,7 +39,7 @@ function iniciarSesion(){
 
 function depositar(){
     let deposito = parseFloat(prompt("Introduzca cantidad a ingresar:"))
-    if(!isNaN(deposito) || deposito < saldo || deposito < 0){
+    if(!isNaN(deposito) && deposito > 0){
         saldo += deposito
         alert(`Usted ha ingresado ${deposito.toFixed(2)} €.`)
         actualizarSaldo()
@@ -53,7 +53,7 @@ depositarBtn.addEventListener("click", depositar)
 
 function retirar(){
     let retiro = parseFloat(prompt("Introduzca cantidad a retirar:"))
-    if(!isNaN(retiro) || retiro < saldo || retiro > 0){
+    if(!isNaN(retiro) && retiro <= saldo && retiro > 0){
         saldo -= retiro
         alert(`Usted ha retirado ${retiro.toFixed(2)} €.`)
         actualizarSaldo()
@@ -67,7 +67,7 @@ retirarBtn.addEventListener("click", retirar)
 
 function transferir(){
     let transf = parseFloat(prompt("Introduzca cantidad a transferir:"))
-    if(!isNaN(transf) || transf < saldo || transf > 0){
+    if(!isNaN(transf) && transf <= saldo && transf > 0){
         const cuenta = prompt("Ingrese una cuenta de destino:")
         if(!validar(cuenta)){
             alert(`La cuenta ${cuenta} no es válida. Pruebe de nuevo.`)
