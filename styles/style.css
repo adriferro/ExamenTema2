@@ -1,0 +1,27 @@
+body{
+    background-color: gainsboro;
+}
+
+.container{
+    background-color: gray;
+    text-align: center;
+    width: 80%;
+    margin: 0 auto;
+    display: grid;
+}
+
+button{
+    padding: 5px;
+    width: 10rem;
+    margin: 5px auto;
+
+    color: white;
+    background-color: black;
+    border: none;
+    box-shadow: 5px 5px rgb(62, 62, 62);
+}
+
+button:hover{
+    background-color: rgb(45, 45, 45);
+    cursor: pointer;
+}
