@@ -41,7 +41,7 @@ function depositar(){
     let deposito = parseFloat(prompt("Introduzca cantidad a ingresar:"))
     if(!isNaN(deposito) || deposito < saldo || deposito < 0){
         saldo += deposito
-        alert(`Usted ha ingresado ${deposito} €.`)
+        alert(`Usted ha ingresado ${deposito.toFixed(2)} €.`)
         actualizarSaldo()
     }else{
         alert("Cantidad inválida. Pruebe de nuevo.")
@@ -55,7 +55,7 @@ function retirar(){
     let retiro = parseFloat(prompt("Introduzca cantidad a retirar:"))
     if(!isNaN(retiro) || retiro < saldo || retiro > 0){
         saldo -= retiro
-        alert(`Usted ha retirado ${retiro} €.`)
+        alert(`Usted ha retirado ${retiro.toFixed(2)} €.`)
         actualizarSaldo()
     }else{
         alert("Cantidad inválida. Pruebe de nuevo.")
@@ -74,7 +74,7 @@ function transferir(){
             return
         }
         saldo -= transf
-        alert(`Usted ha transferido ${transf} € a la cuenta ${cuenta}.`)
+        alert(`Usted ha transferido ${transf.toFixed(2)} € a la cuenta ${cuenta}.`)
         actualizarSaldo()
     }else{
         alert("Cantidad inválida. Pruebe de nuevo.")

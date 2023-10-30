@@ -46,4 +46,5 @@ button:hover{
 span{
     margin: 15px auto;
     background-color: whitesmoke;
+    border: solid 5px rgb(190, 190, 190);
 }

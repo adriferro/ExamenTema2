@@ -1,0 +1,13 @@
+@font-face {
+    font-family: Montserrat;
+    src: url(/assets/fonts/Montserrat/Montserrat-Bold.ttf);
+}
+
+body{
+    background-color: red;
+}
+
+h1{
+    font-family: Montserrat;
+    text-align: center;
+}
