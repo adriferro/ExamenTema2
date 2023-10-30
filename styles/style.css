@@ -1,5 +1,20 @@
+@font-face {
+    font-family: Agbalumo;
+    src: url(/assets/fonts/Agbalumo/Agbalumo-Regular.ttf);
+}
+
+@font-face {
+    font-family: Montserrat;
+    src: url(/assets/fonts/Montserrat/Montserrat-Bold.ttf);
+}
+
 body{
     background-color: gainsboro;
+    font-family: Montserrat;
+}
+
+h1{
+    font-family: Agbalumo;
 }
 
 .container{
@@ -8,20 +23,27 @@ body{
     width: 80%;
     margin: 0 auto;
     display: grid;
+    border-radius: 10px;
+    box-shadow: 0px 0px 2px 5px black;
 }
 
 button{
     padding: 5px;
     width: 10rem;
     margin: 5px auto;
-
     color: white;
     background-color: black;
     border: none;
     box-shadow: 5px 5px rgb(62, 62, 62);
+    font-family: Montserrat;
 }
 
 button:hover{
     background-color: rgb(45, 45, 45);
     cursor: pointer;
+}
+
+span{
+    margin: 15px auto;
+    background-color: whitesmoke;
 }
