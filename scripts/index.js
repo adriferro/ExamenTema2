@@ -15,10 +15,12 @@ const exitBtn = document.getElementById("exit")
 const updateMoney = document.getElementById("money")
 
 
-function update(){
+//Función para actualizar el saldo
+function updateMoneyTemplate(){
     updateMoney.innerText = `El saldo es: ${money.toFixed(2)} €.`
 }
 
+//Función de inicio de sesión
 function logIn(){
     let PIN = prompt("Introduzca su PIN:")
     while(PIN !== PIN_TRUE && tries > 1){
@@ -32,17 +34,17 @@ function logIn(){
         window.location.replace("templates/blocked.html")
     }else{
         alert("Inicio de sesión exitoso.")
-        update()
+        updateMoneyTemplate()
     }
 }
 
-
+//Función para depositar dinero
 function deposit(){
     let mondep = parseFloat(prompt("Introduzca cantidad a ingresar:"))
     if(!isNaN(mondep) && mondep > 0){
         money += mondep
         alert(`Usted ha ingresado ${mondep.toFixed(2)} €.`)
-        update()
+        updateMoneyTemplate()
     }else{
         alert("Cantidad inválida. Pruebe de nuevo.")
     }
@@ -50,13 +52,13 @@ function deposit(){
 
 depositBtn.addEventListener("click", deposit)
 
-
+//Función para retirar dinero
 function retire(){
     let monret = parseFloat(prompt("Introduzca cantidad a retirar:"))
     if(!isNaN(monret) && monret <= money && monret > 0){
         money -= monret
         alert(`Usted ha retirado ${monret.toFixed(2)} €.`)
-        update()
+        updateMoneyTemplate()
     }else{
         alert("Cantidad inválida. Pruebe de nuevo.")
     }
@@ -64,7 +66,7 @@ function retire(){
 
 retireBtn.addEventListener("click", retire)
 
-
+//Función para transferir dinero
 function transfer(){
     let transf = parseFloat(prompt("Introduzca cantidad a transferir:"))
     if(!isNaN(transf) && transf <= money && transf > 0){
@@ -75,7 +77,7 @@ function transfer(){
         }
         money -= transf
         alert(`Usted ha transferido ${transf.toFixed(2)} € a la cuenta ${account}.`)
-        update()
+        updateMoneyTemplate()
     }else{
         alert("Cantidad inválida. Pruebe de nuevo.")
     }
@@ -83,7 +85,7 @@ function transfer(){
 
 transferBtn.addEventListener("click", transfer)
 
-
+//Función para cambiar el PIN
 function changePIN(){
     let PIN = prompt("Introduzca su PIN:")
     if(PIN === PIN_TRUE){
@@ -103,6 +105,7 @@ exitBtn.addEventListener("click", () => {
 })
 
 
+//Función para validar la cuenta
 function validate(iban){
     let expresion = /^(ES\d{22}$)/
     return expresion.test(iban)
