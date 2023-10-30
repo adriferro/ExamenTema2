@@ -1,10 +1,10 @@
 //Adrián Fernández Rodríguez
 //
 
-//window.addEventListener("load",iniciarSesion)
+window.addEventListener("load",iniciarSesion)
 
 let saldo = 1000;
-const PIN_CORRECTO = "1234";
+let PIN_CORRECTO = "1234";
 let intentos = 3;
 
 const depositarBtn = document.getElementById("depositar")
@@ -16,10 +16,10 @@ const saldoAct = document.getElementById("saldo")
 
 
 function actualizarSaldo(){
-    saldoAct = alert(`El saldo es: ${saldo} €.`)
+    saldoAct.innerText = `El saldo es: ${saldo} €.`
 }
 
-/*function iniciarSesion(){
+function iniciarSesion(){
     let PIN = prompt("Introduzca su PIN:")
     while(PIN !== PIN_CORRECTO && intentos > 1){
         intentos--
@@ -34,7 +34,7 @@ function actualizarSaldo(){
         alert("Inicio de sesión exitoso.")
         actualizarSaldo()
     }
-}*/
+}
 
 
 function depositar(){
@@ -69,7 +69,7 @@ function transferir(){
     let transf = parseFloat(prompt("Introduzca cantidad a transferir:"))
     if(!isNaN(transf) || transf < saldo || transf > 0){
         const cuenta = prompt("Ingrese una cuenta de destino:")
-        if(/^(ES\d{22}$)/.test(cuenta) === false){
+        if(!validar(cuenta)){
             alert(`La cuenta ${cuenta} no es válida. Pruebe de nuevo.`)
             return
         }
@@ -87,8 +87,8 @@ transferirBtn.addEventListener("click", transferir)
 function cambiarPIN(){
     let PIN = prompt("Introduzca su PIN:")
     if(PIN === PIN_CORRECTO){
-        PIN = prompt("Introduzca su nueva contraseña:")
-        alert(`Su nuevo PIN es: ${PIN}`)
+        PIN_CORRECTO = prompt("Introduzca su nueva contraseña:")
+        alert(`Su nuevo PIN es: ${PIN_CORRECTO}`)
     }else{
         alert("PIN incorrecto. Pruebe de nuevo.")
     }
@@ -105,5 +105,5 @@ salirBtn.addEventListener("click", () => {
 
 function validar(iban){
     let expresion = /^(ES\d{22}$)/
-    expresion.test(iban)
+    return expresion.test(iban)
 }
