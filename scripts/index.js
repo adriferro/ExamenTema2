@@ -52,7 +52,7 @@ depositBtn.addEventListener("click", deposit)
 
 
 function retire(){
-    let monret = parseFloat(prompt("Introduzca cantidad a retire:"))
+    let monret = parseFloat(prompt("Introduzca cantidad a retirar:"))
     if(!isNaN(monret) && monret <= money && monret > 0){
         money -= monret
         alert(`Usted ha retirado ${monret.toFixed(2)} €.`)
