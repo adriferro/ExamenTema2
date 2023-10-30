@@ -1,109 +1,109 @@
 //Adrián Fernández Rodríguez
 //
 
-window.addEventListener("load",iniciarSesion)
+window.addEventListener("load",logIn)
 
-let saldo = 1000;
-let PIN_CORRECTO = "1234";
-let intentos = 3;
+let money = 1000;
+let PIN_TRUE = "1234";
+let tries = 3;
 
-const depositarBtn = document.getElementById("depositar")
-const retirarBtn = document.getElementById("retirar")
-const transferirBtn = document.getElementById("transferir")
-const cambiarBtn = document.getElementById("cambiarPIN")
-const salirBtn = document.getElementById("salir")
-const saldoAct = document.getElementById("saldo")
+const depositBtn = document.getElementById("deposit")
+const retireBtn = document.getElementById("retire")
+const transferBtn = document.getElementById("transfer")
+const changeBtn = document.getElementById("changePIN")
+const exitBtn = document.getElementById("exit")
+const updateMoney = document.getElementById("money")
 
 
-function actualizarSaldo(){
-    saldoAct.innerText = `El saldo es: ${saldo.toFixed(2)} €.`
+function update(){
+    updateMoney.innerText = `El saldo es: ${money.toFixed(2)} €.`
 }
 
-function iniciarSesion(){
+function logIn(){
     let PIN = prompt("Introduzca su PIN:")
-    while(PIN !== PIN_CORRECTO && intentos > 1){
-        intentos--
-        alert(`PIN incorrecto. Le quedan ${intentos} intentos restantes.`)
+    while(PIN !== PIN_TRUE && tries > 1){
+        tries--
+        alert(`PIN incorrecto. Le quedan ${tries} intentos restantes.`)
         PIN = prompt("Vuelva a introducir su PIN:")
     }
 
-    if(PIN !== PIN_CORRECTO){
+    if(PIN !== PIN_TRUE){
         alert("El cajero se ha bloqueado.")
         window.location.replace("templates/blocked.html")
     }else{
         alert("Inicio de sesión exitoso.")
-        actualizarSaldo()
+        update()
     }
 }
 
 
-function depositar(){
-    let deposito = parseFloat(prompt("Introduzca cantidad a ingresar:"))
-    if(!isNaN(deposito) && deposito > 0){
-        saldo += deposito
-        alert(`Usted ha ingresado ${deposito.toFixed(2)} €.`)
-        actualizarSaldo()
+function deposit(){
+    let mondep = parseFloat(prompt("Introduzca cantidad a ingresar:"))
+    if(!isNaN(mondep) && mondep > 0){
+        money += mondep
+        alert(`Usted ha ingresado ${mondep.toFixed(2)} €.`)
+        update()
     }else{
         alert("Cantidad inválida. Pruebe de nuevo.")
     }
 }
 
-depositarBtn.addEventListener("click", depositar)
+depositBtn.addEventListener("click", deposit)
 
 
-function retirar(){
-    let retiro = parseFloat(prompt("Introduzca cantidad a retirar:"))
-    if(!isNaN(retiro) && retiro <= saldo && retiro > 0){
-        saldo -= retiro
-        alert(`Usted ha retirado ${retiro.toFixed(2)} €.`)
-        actualizarSaldo()
+function retire(){
+    let monret = parseFloat(prompt("Introduzca cantidad a retire:"))
+    if(!isNaN(monret) && monret <= money && monret > 0){
+        money -= monret
+        alert(`Usted ha retirado ${monret.toFixed(2)} €.`)
+        update()
     }else{
         alert("Cantidad inválida. Pruebe de nuevo.")
     }
 }
 
-retirarBtn.addEventListener("click", retirar)
+retireBtn.addEventListener("click", retire)
 
 
-function transferir(){
+function transfer(){
     let transf = parseFloat(prompt("Introduzca cantidad a transferir:"))
-    if(!isNaN(transf) && transf <= saldo && transf > 0){
-        const cuenta = prompt("Ingrese una cuenta de destino:")
-        if(!validar(cuenta)){
-            alert(`La cuenta ${cuenta} no es válida. Pruebe de nuevo.`)
+    if(!isNaN(transf) && transf <= money && transf > 0){
+        const account = prompt("Ingrese una cuenta de destino:")
+        if(!validate(account)){
+            alert(`La cuenta ${account} no es válida. Pruebe de nuevo.`)
             return
         }
-        saldo -= transf
-        alert(`Usted ha transferido ${transf.toFixed(2)} € a la cuenta ${cuenta}.`)
-        actualizarSaldo()
+        money -= transf
+        alert(`Usted ha transferido ${transf.toFixed(2)} € a la cuenta ${account}.`)
+        update()
     }else{
         alert("Cantidad inválida. Pruebe de nuevo.")
     }
 }
 
-transferirBtn.addEventListener("click", transferir)
+transferBtn.addEventListener("click", transfer)
 
 
-function cambiarPIN(){
+function changePIN(){
     let PIN = prompt("Introduzca su PIN:")
-    if(PIN === PIN_CORRECTO){
-        PIN_CORRECTO = prompt("Introduzca su nueva contraseña:")
-        alert(`Su nuevo PIN es: ${PIN_CORRECTO}`)
+    if(PIN === PIN_TRUE){
+        PIN_TRUE = prompt("Introduzca su nueva contraseña:")
+        alert(`Su nuevo PIN es: ${PIN_TRUE}`)
     }else{
         alert("PIN incorrecto. Pruebe de nuevo.")
     }
 }
 
-cambiarBtn.addEventListener("click", cambiarPIN)
+changeBtn.addEventListener("click", changePIN)
 
 
-salirBtn.addEventListener("click", () => {
+exitBtn.addEventListener("click", () => {
     alert(`Usted ha seleccionado salir.`)
     window.location.replace("templates/exit.html")
 })
 
 
-function validar(iban){
+function validate(iban){
     let expresion = /^(ES\d{22}$)/
     return expresion.test(iban)
 }
